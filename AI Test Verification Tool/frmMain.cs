@@ -275,7 +275,7 @@ namespace AI_Test_Verification_Tool
             }
             else
             {
-                if (q.DeepSeek.Length == 1)
+                if (q.DeepSeek.Length == 0)
                 {
                     q.DeepSeekValidReason = "No Response";
                 }
