@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI Test Verification Tool", "AI Test Verification Tool\AI Test Verification Tool.csproj", "{B5374DAD-3A70-49C8-94D0-A50079941656}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5374DAD-3A70-49C8-94D0-A50079941656}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5374DAD-3A70-49C8-94D0-A50079941656}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5374DAD-3A70-49C8-94D0-A50079941656}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5374DAD-3A70-49C8-94D0-A50079941656}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57B55D2E-36AF-43BD-9B32-85E71F40B586}
+	EndGlobalSection
+EndGlobal
