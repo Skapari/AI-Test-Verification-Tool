@@ -206,18 +206,16 @@ namespace AI_Test_Verification_Tool
             wk.Column(3).Width = 40;
             wk.Column(4).Width = 40;
 
-            int dvalid = 0;
-            int cvalid = 0;
-
-            for (int i = 2; i < qs.Count + 2; i++)
+            //Ratio correct per each bot
+            int dvalid = 0; // how many questions in deepseek are valid
+            int cvalid = 0; // how many questions in chatgpt are valid
+            for (int i = 2; i < qs.Count + 2; i++) //for every question, using index to place into xlsx
             {
                 float dval = float.Parse(stats.Row(i).Cell(2).Value.ToString());
                 float cval = float.Parse(stats.Row(i).Cell(4).Value.ToString());
-
-
-                if (dval >= 50)
+                
+                if (dval >= 50) //if over 50%, inc
                     dvalid++;
-
                 if (cval >= 50)
                     cvalid++;
             }
@@ -243,7 +241,6 @@ namespace AI_Test_Verification_Tool
             {
                 Match d = Regex.Match(q.DeepSeek, q.ExpectedOutputs[i], RegexOptions.IgnoreCase);
                 Match c = Regex.Match(q.ChatGPT, q.ExpectedOutputs[i], RegexOptions.IgnoreCase);
-
                 if (d.Success)
                 {
                     q.DeepCorrect += 1;
@@ -261,13 +258,8 @@ namespace AI_Test_Verification_Tool
                 else
                     q.OutputGPTCorrect.Add(false);
             }
-
-            
-
-
             float DeepSeekCorrect = (float)q.DeepCorrect / q.ExpectedOutputs.Count * 100;
             float ChatGPTCorrect = (float)q.ChatCorrect / q.ExpectedOutputs.Count * 100;
-
             if (DeepSeekCorrect >= 50)
             {
                 q.DeepSeekValid = true;
@@ -275,14 +267,13 @@ namespace AI_Test_Verification_Tool
             }
             else
             {
+                //because default state for boolean is false, we don't need to specify
                 if (q.DeepSeek.Length == 0)
                 {
                     q.DeepSeekValidReason = "No Response";
                 }
                 else
-                {
                     q.DeepSeekValidReason = "Low Accuracy";
-                }
                 //if Correct% is below set amount, see if the response was invalid due to region blocking (like deepseek chinese questions)
                 //if not, not relevant response.
             }
@@ -294,6 +285,7 @@ namespace AI_Test_Verification_Tool
             }
             else
             {
+                //because default state for boolean is false, we don't need to specify
                 if (q.ChatGPT.Length == 0)
                     q.ChatGPTValidReason = "No Response";
                 else
@@ -414,22 +406,18 @@ namespace AI_Test_Verification_Tool
 
         public string AnalysisString()
         {
-            //string x = $"Question: {this.Question}\n";
-
-            int dPreview = 0;
-
+            int dPreview = 0; //if string is too long, shorten it
             if (DeepSeek.Length > 300)
                 dPreview = 300;
             else
                 dPreview = DeepSeek.Length;
 
-            int cPreview = 0;
+            int cPreview = 0; //if string is too long, shorten it
             if (ChatGPT.Length > 300)
                 cPreview = 300;
             else
                 cPreview = ChatGPT.Length;
-            
-
+            //deepseek response = this.
             string x = string.Concat("DeepSeek Response: ", DeepSeek.AsSpan(0, dPreview), "...\n");
             x += $"DeepSeek Expected outputs:\n";
             for (int i = 0; i < ExpectedOutputs.Count; i++)
